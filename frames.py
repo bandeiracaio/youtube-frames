@@ -21,6 +21,16 @@ Output: <base>/<video-id>/run-<timestamp>/ with f_NNN.jpg, sheet_NN.jpg, times.t
 import argparse, datetime, os, re, shutil, subprocess, sys, tempfile
 from pathlib import Path
 
+if sys.version_info < (3, 8):
+    sys.exit(f"youtube-frames needs Python 3.8+ (this is {sys.version.split()[0]}). Try `python` instead of `python3`.")
+
+
+def is_file(p):
+    try:
+        return Path(p).is_file()
+    except (OSError, ValueError):  # a URL is not a valid path on Windows
+        return False
+
 HERE = Path(__file__).resolve().parent
 
 
@@ -43,7 +53,7 @@ def fmt(t):
 
 def get_video(src, base):
     """Return (video_path, video_id, folder). Downloads and caches YouTube videos."""
-    if Path(src).is_file():
+    if is_file(src):
         stem = Path(src).stem if Path(src).stem != "video" else Path(src).resolve().parent.name
         vid = re.sub(r"[^\w.-]", "_", stem)
         folder = base / vid

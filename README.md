@@ -6,7 +6,7 @@ Claude can't watch video natively. This gives it eyes, cheaply: scene-change sam
 
 ## Install
 
-Requirements: `python` 3.9+, [`yt-dlp`](https://github.com/yt-dlp/yt-dlp), and [`ffmpeg`](https://ffmpeg.org/) on your PATH.
+Requirements: Python 3.8+, [`yt-dlp`](https://github.com/yt-dlp/yt-dlp), and [`ffmpeg`](https://ffmpeg.org/) on your PATH.
 
 ```bash
 git clone https://github.com/bandeiracaio/youtube-frames ~/.claude/skills/youtube-frames
